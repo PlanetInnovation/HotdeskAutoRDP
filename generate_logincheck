@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This script generates a list of currently logged in users and places it in a secure location
+# It is designed to be run from boot and never shut down
+
+while true; do
+  smbstatus -b | grep ipv4 | grep users | awk 'BEGIN { OFS = ";"} {print $2 , $4}' > /tmp/logincheck.txt
+  cp /tmp/logincheck.txt /var/www/html/logincheck/logincheck.txt
+  sleep 5s
+done
