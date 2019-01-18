@@ -5,6 +5,6 @@
 
 while true; do
   smbstatus -b | grep ipv4 | grep users | awk 'BEGIN { OFS = ";"} {print $2 , $4}' > /tmp/logincheck.txt
-  cp /tmp/logincheck.txt /var/www/html/logincheck/logincheck.txt
+  scp /tmp/logincheck.txt remotelogincheck@logincheck:/var/www/html/logincheck/
   sleep 5s
 done
